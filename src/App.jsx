@@ -1,87 +1,25 @@
+import HomePage from "./HomePage";
+import LoginPage from "./LoginPage";
 import ProductCard from "./ProductCard";
-import { useState } from "react";
+import { Route, Switch} from 'wouter';
+import RegisterPage from "./RegisterPage";
+import ShoppingCartPage from "./ShoppingCartPage";
+import Navbar from "./Navbar";
 
 export default function App() {
 
-  const [showNavBar, setShowNavBar] = useState(false);
 
   return <>
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container">
-        <a className="navbar-brand" href="#">E-Shop</a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          onClick={()=>{
-            setShowNavBar(!showNavBar);
-          }}
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className={`collapse navbar-collapse ${showNavBar ? "show" : ""}`} id="navbarNav">
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Products</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">About</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <header className="bg-primary text-white text-center py-5">
-      <div className="container">
-        <h1 className="display-4">Welcome to E-Shop</h1>
-        <p className="lead">Discover amazing products at unbeatable prices!</p>
-        <a href="#" className="btn btn-light btn-lg">Shop Now</a>
-      </div>
-    </header>
 
-    <main className="container my-5">
-      <h2 className="text-center mb-4">Featured Products</h2>
-      <div className="row">
-        <div className="col-md-3 mb-4">
-          <ProductCard
-            name="ACME Screwdriver"
-            price={19.99}
-            imageUrl="https://picsum.photos/id/15/300/200"
-          />
-        </div>
-        <div className="col-md-3 mb-4">
-          <ProductCard
-            name="ACME Anvil"
-            price={199.99}
-            imageUrl="https://picsum.photos/id/16/300/200"
+    <Navbar/>
 
-          />
-        </div>
-        <div className="col-md-3 mb-4">
-          <ProductCard
-            name="ACME Rocket"
-            price={9999.99}
-            imageUrl="https://picsum.photos/id/17/300/200"
-          />
-        </div>
-        <div className="col-md-3 mb-4">
-          <ProductCard
-            name="ACME Spaceship"
-            price={19999.99}
-            imageUrl="https://picsum.photos/id/18/300/200"
-
-          />
-        </div>
-      </div>
-    </main>
+   {/* Part of the component that will be changed by the URL */}
+    <Switch>
+          <Route path="/" component={HomePage}/>
+          <Route path="/login" component={LoginPage}/>
+          <Route path="/register" component={RegisterPage}/>
+          <Route path="/cart" component={ShoppingCartPage}/>
+    </Switch>
 
     <footer className="bg-dark text-white text-center py-3">
       <div className="container">
