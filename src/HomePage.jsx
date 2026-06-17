@@ -1,6 +1,22 @@
+import axios from "axios";
 import ProductCard from "./ProductCard"
+import { useState, useEffect } from "react";
 
 export default function HomePage() {
+
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            const response = await axios.get("featured.json");
+            setProducts(response.data);
+        }
+        fetchData();
+
+
+    }, [])
+
     return <div>
         <header className="bg-primary text-white text-center py-5">
             <div className="container">
@@ -13,36 +29,20 @@ export default function HomePage() {
         <main className="container my-5">
             <h2 className="text-center mb-4">Featured Products</h2>
             <div className="row">
-                <div className="col-md-3 mb-4">
-                    <ProductCard
-                        name="ACME Screwdriver"
-                        price={19.99}
-                        imageUrl="https://picsum.photos/id/15/300/200"
-                    />
-                </div>
-                <div className="col-md-3 mb-4">
-                    <ProductCard
-                        name="ACME Anvil"
-                        price={199.99}
-                        imageUrl="https://picsum.photos/id/16/300/200"
 
-                    />
-                </div>
-                <div className="col-md-3 mb-4">
-                    <ProductCard
-                        name="ACME Rocket"
-                        price={9999.99}
-                        imageUrl="https://picsum.photos/id/17/300/200"
-                    />
-                </div>
-                <div className="col-md-3 mb-4">
-                    <ProductCard
-                        name="ACME Spaceship"
-                        price={19999.99}
-                        imageUrl="https://picsum.photos/id/18/300/200"
+                {
+                    products.map(p => (
+                        <div className="col-md-3 mb-4" key={p.id}>
+                            <ProductCard
+                                name={p.name}
+                                price={p.price}
+                                imageUrl={p.imageUrl}
+                            />
+                        </div>
+                    ))
+                }
 
-                    />
-                </div>
+
             </div>
         </main>
 
