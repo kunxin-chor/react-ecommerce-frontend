@@ -1,7 +1,12 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { useFlashMessage } from './FlashMessageStore';
+import { useLocation } from 'wouter';
 
 export default function RegisterPage() {
+
+    const {showMessage} = useFlashMessage();
+    const [, setLocation] = useLocation();
 
     const initialValues = {
         name: "",
@@ -29,6 +34,8 @@ export default function RegisterPage() {
     // arg 2: formikHelper (utility object that has useful functions)
     const handleSubmit = (values, formikHelper) => {
         console.log(values)
+        showMessage("Your account has been created", "success");
+        setLocation("/")
     }
 
     return <div className="container">

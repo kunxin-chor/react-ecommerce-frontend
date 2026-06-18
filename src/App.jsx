@@ -6,6 +6,8 @@ import RegisterPage from "./RegisterPage";
 import ShoppingCartPage from "./ShoppingCartPage";
 import ProductPage from "./ProductPage";
 import Navbar from "./Navbar";
+import FlashMessageDisplay from "./FlashMessageDisplay";
+import "./App.css";
 
 export default function App() {
 
@@ -13,6 +15,8 @@ export default function App() {
   return <>
 
     <Navbar/>
+
+    <FlashMessageDisplay/>
 
    {/* Part of the component that will be changed by the URL */}
     <Switch>
